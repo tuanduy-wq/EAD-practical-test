@@ -1,0 +1,20 @@
+﻿:root { --sis-dark: #2f5233; --sis-mid: #66805f; --sis-head: #3b5b3b; }
+
+body { background: #f4f7f3; font-family: "Segoe UI", system-ui, sans-serif; }
+
+.sis-topbar { background: var(--sis-mid); color: #fff; padding: .9rem 1.5rem;
+    font-size: 1.6rem; font-weight: 700; }
+.sis-title  { color: var(--sis-dark); font-weight: 700; }
+.sis-card   { background: #fff; border-radius: .75rem; box-shadow: 0 2px 12px rgba(0,0,0,.08); }
+
+.btn-sis       { background: var(--sis-head); color: #fff; border: 0; }
+.btn-sis:hover { background: var(--sis-dark); color: #fff; }
+
+.sis-table thead th { background: var(--sis-head); color: #fff; font-weight: 600;
+    border: 0; box-shadow: none; white-space: nowrap; }
+.sis-table tbody tr:hover { background: #eef3ec; }
+
+.grade { display: inline-block; min-width: 2rem; text-align: center; padding: .2rem .6rem;
+    border-radius: 999px; font-weight: 700; color: #fff; }
+.grade-A { background: #2e7d32; } .grade-B { background: #1976d2; }
+.grade-D { background: #ef6c00; } .grade-F { background: #c62828; }

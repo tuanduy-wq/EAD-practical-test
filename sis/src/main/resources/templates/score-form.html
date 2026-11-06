@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Score</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/sis.css}">
+</head>
+<body>
+<div class="sis-topbar">Student Information System</div>
+
+<main class="container py-4" style="max-width: 560px;">
+    <h2 class="sis-title text-center mb-3">Add Score</h2>
+
+    <form th:action="@{/scores}" th:object="${scoreForm}" method="post" class="sis-card p-4" novalidate>
+        <div class="mb-3">
+            <label class="form-label" for="studentId">Student</label>
+            <select id="studentId" th:field="*{studentId}" class="form-select"
+                    th:classappend="${#fields.hasErrors('studentId')} ? 'is-invalid'">
+                <option value="">-- Select student --</option>
+                <option th:each="st : ${students}" th:value="${st.id}"
+                        th:text="${st.studentCode + ' - ' + st.fullName}"></option>
+            </select>
+            <div class="invalid-feedback" th:errors="*{studentId}"></div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="subjectId">Subject</label>
+            <select id="subjectId" th:field="*{subjectId}" class="form-select"
+                    th:classappend="${#fields.hasErrors('subjectId')} ? 'is-invalid'">
+                <option value="">-- Select subject --</option>
+                <option th:each="sb : ${subjects}" th:value="${sb.id}"
+                        th:text="${sb.subjectCode + ' - ' + sb.subjectName + ' (' + sb.credit + ' credits)'}"></option>
+            </select>
+            <div class="invalid-feedback" th:errors="*{subjectId}"></div>
+        </div>
+        <div class="row">
+            <div class="col-6 mb-4">
+                <label class="form-label" for="score1">Score 1</label>
+                <input type="number" id="score1" th:field="*{score1}" class="form-control"
+                       th:classappend="${#fields.hasErrors('score1')} ? 'is-invalid'"
+                       step="0.01" min="0" max="10">
+                <div class="invalid-feedback" th:errors="*{score1}"></div>
+            </div>
+            <div class="col-6 mb-4">
+                <label class="form-label" for="score2">Score 2</label>
+                <input type="number" id="score2" th:field="*{score2}" class="form-control"
+                       th:classappend="${#fields.hasErrors('score2')} ? 'is-invalid'"
+                       step="0.01" min="0" max="10">
+                <div class="invalid-feedback" th:errors="*{score2}"></div>
+            </div>
+        </div>
+        <p class="text-muted small">Grade = 0.3 × Score 1 + 0.7 × Score 2</p>
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-sis">Save</button>
+            <a th:href="@{/}" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>
